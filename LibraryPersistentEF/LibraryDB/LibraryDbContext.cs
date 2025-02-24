@@ -1,4 +1,5 @@
-﻿using Library.Core.Domain.Books.Models;
+﻿using Library.Core.Domain.Authors.Models;
+using Library.Core.Domain.Books.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace LibraryPersistentEF.LibraryDB
@@ -9,6 +10,8 @@ namespace LibraryPersistentEF.LibraryDB
         public static string LibraryMigrationHistory = "__LibraryMigrationHistory";
 
         public DbSet<Book> Books { get; set; }
+
+        public DbSet<Author> Authors { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Library.Application.Domain.Authors.Queries;
+using Library.Core.Domain.Authors.Models;
 
 namespace Library.Application.Domain.Books.Queries
 {
     public record BookDto(
         Guid Id,
         string Title,
-        string SerialNumber
+        string SerialNumber,
+        AuthorDto[]?  Authors
     );
     
 }
