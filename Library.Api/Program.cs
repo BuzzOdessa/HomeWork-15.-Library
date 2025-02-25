@@ -1,4 +1,5 @@
 using System.Reflection;
+using Library.Application;
 using Library.Infrastructure;
 using LibraryPersistentEF.LibraryDB;
 {
@@ -15,11 +16,14 @@ using LibraryPersistentEF.LibraryDB;
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
-    // Вынес из инфраструктуры сюда. Здесь наглядней. Но беда. Инфрастуруктур все равно надо подключить отдельно
-    Assembly assembly = Assembly.GetExecutingAssembly();
-    builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+    //// Вынес из инфраструктуры сюда. Здесь наглядней. Но беда. Инфрастуруктур все равно надо подключить отдельно
+    //Assembly assembly = Assembly.GetExecutingAssembly();
+    //builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
     builder.Services.AddInfrastructureServices();
     builder.Services.RegisterLibraryDbContext(builder.Configuration);
+
+    // Вызывает всякие AddApplicationServices. Их аж две штуки. Одна на уровне Application, вторая в инфраструктуре 
+    builder.Services.AddApplicationServices();
 
     var app = builder.Build();
 

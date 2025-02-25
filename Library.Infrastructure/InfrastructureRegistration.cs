@@ -1,4 +1,8 @@
 ﻿using System.Reflection;
+using Library.Core.Common;
+using Library.Core.Domain.Books.Common;
+using Library.Infrastructure.Common;
+using Library.Infrastructure.Core.Domain.Books;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Library.Infrastructure
@@ -10,8 +14,8 @@ namespace Library.Infrastructure
             // Подключение всех сервисов инфраструктуры  к медиатору.
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
-            //services.AddScoped<ILibraryRepository, LibraryRepository>();
-//            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IBookRepository, BooksEFCoreRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 /*            services.AddScoped<ILibraryRepository, LibraryEFCoreRepository>();
             services.AddScoped<IOwnersRepository, OwnersRepository>();
 */        }

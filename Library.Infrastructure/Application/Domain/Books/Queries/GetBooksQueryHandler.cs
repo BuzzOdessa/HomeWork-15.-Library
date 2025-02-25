@@ -30,7 +30,7 @@ namespace Library.Infrastructure.Application.Domain.Books.Queries
                     x.Id,
                     x.Title,
                     x.SerialNumber, 
-                    x.Authors.Select(o => new AuthorDto(o.Author.Id , o.Author.Name)).ToArray()
+                    x.Authors.Select(o => new AuthorDto(o.Author.Id , o.Author.Name, null)).ToArray()
                 ))
                 .ToArrayAsync(cancellationToken);
 

@@ -2,7 +2,7 @@
 
 namespace Library.Core.Domain.Books.Common
 {
-    public interface IBookActions
+    public interface IBookRepository
     {
         Task<Book> GetById(Guid id, CancellationToken cancellationToken);
         

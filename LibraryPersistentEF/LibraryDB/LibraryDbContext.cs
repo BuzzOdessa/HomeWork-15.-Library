@@ -15,6 +15,7 @@ namespace LibraryPersistentEF.LibraryDB
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
             modelBuilder.HasDefaultSchema(LibraryDbSchema);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(LibraryDbContext).Assembly);
 

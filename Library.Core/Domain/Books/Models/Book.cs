@@ -1,4 +1,5 @@
 ﻿using Library.Core.Domain.Authors.Models;
+using Library.Core.Domain.Books.Data;
 
 namespace Library.Core.Domain.Books.Models
 {
@@ -17,6 +18,17 @@ namespace Library.Core.Domain.Books.Models
         /// </summary>
         public string SerialNumber { get; set; }
 
+        public static Book Create(CreateBookData data)
+        {
+            //Validate(new CreateAnimalDataValidator(), data);
+
+            return new Book()
+            {
+                Id = Guid.NewGuid(),
+                Title = data.Title,
+                SerialNumber = data.SerialNumber
+            };                
+        }
 
         /// <summary>
         /// Авторы книги

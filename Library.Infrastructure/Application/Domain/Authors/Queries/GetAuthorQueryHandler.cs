@@ -28,7 +28,8 @@ namespace Library.Infrastructure.Application.Domain.Authors.Queries
                      .Select(x => new AuthorDto(
                          x.Id,
                          x.Name
-                         //,                         x.Authors.Select(o => new AuthorDto(o.Author.Id, o.Author.Name)).ToArray()
+                        , x.Books.Select(o => new BookDto(o.Book.Id, o.Book.Title , o.Book.SerialNumber,null)).ToArray()
+                     //,                         x.Authors.Select(o => new AuthorDto(o.Author.Id, o.Author.Name)).ToArray()
                      ))
                      .ToArrayAsync(cancellationToken);
 
