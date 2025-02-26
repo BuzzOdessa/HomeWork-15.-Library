@@ -108,5 +108,21 @@ namespace Library.Api.Domain.Books
             await mediator.Send(command, cancellationToken);
             return Ok();
         }
+
+        /// <summary>
+        /// видалити книгу
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteBook(
+                        [FromRoute] Guid id,
+                        CancellationToken cancellationToken = default)
+        {
+            var command = new DeleteBookCommand(id);
+            await mediator.Send(command, cancellationToken);
+            return Ok();
+        }
     }
 }

@@ -3,6 +3,7 @@ using Library.Api.Constants;
 using Library.Api.Domain.Authors.Requests;
 using Library.Application.Domain.Authors.Commands;
 using Library.Application.Domain.Authors.Queries;
+using Library.Application.Domain.Books.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -69,6 +70,22 @@ namespace Library.Api.Domain.Authors
                 request.Name
                 
             );
+            await mediator.Send(command, cancellationToken);
+            return Ok();
+        }
+
+        /// <summary>
+        /// Видалити автора
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteAuthor(
+                [FromRoute] Guid id,
+                CancellationToken cancellationToken = default)
+        {
+            var command = new DeleteAuthorCommand(id);
             await mediator.Send(command, cancellationToken);
             return Ok();
         }
