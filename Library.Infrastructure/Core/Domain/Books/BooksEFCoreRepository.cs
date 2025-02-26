@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Library.Core.Domain.Books.Common;
+﻿using Library.Core.Domain.Books.Common;
 using Library.Core.Domain.Books.Models;
 using LibraryPersistentEF.LibraryDB;
+using Microsoft.EntityFrameworkCore;
 
 namespace Library.Infrastructure.Core.Domain.Books
 {
@@ -13,12 +9,11 @@ namespace Library.Infrastructure.Core.Domain.Books
     {
         public async Task<Book> GetById(Guid id, CancellationToken cancellationToken)
         {
-         /*   return await dbContext
-                .Animals
-                .Include(x => x.Owners)
+            return await dbContext
+                .Books
+                .Include(x => x.Authors)
                 .Where(x => x.Id == id)
-                .FirstOrDefaultAsync(cancellationToken) ?? throw new InvalidOperationException("Animal was not found");*/
-          return null;
+                .FirstOrDefaultAsync(cancellationToken) ?? throw new InvalidOperationException("Book was not found");          
         }
 
         public void Add(Book book)

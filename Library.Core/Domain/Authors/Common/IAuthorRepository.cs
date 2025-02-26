@@ -2,7 +2,7 @@
 
 namespace Library.Core.Domain.Authors.Common
 {
-    public interface IAuthorActions
+    public interface IAuthorRepository
     {
         Task<Author> GetById(Guid id, CancellationToken cancellationToken);
         // this method usually is not needed as EF Core tracks changes to entities. Will learn later.

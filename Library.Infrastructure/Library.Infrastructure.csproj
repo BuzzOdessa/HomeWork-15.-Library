@@ -11,8 +11,4 @@
     <ProjectReference Include="..\LibraryPersistentEF\Library.PersistentEF.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Application\Domain\Books\Commands\" />
-  </ItemGroup>
-
 </Project>

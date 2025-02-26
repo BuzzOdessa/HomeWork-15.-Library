@@ -1,4 +1,5 @@
-﻿using Library.Core.Domain.Authors.Models;
+﻿using System.Xml.Linq;
+using Library.Core.Domain.Authors.Models;
 using Library.Core.Domain.Books.Data;
 
 namespace Library.Core.Domain.Books.Models
@@ -76,5 +77,20 @@ namespace Library.Core.Domain.Books.Models
             _authors.AddRange(bookAuthors);
         }
 
+
+        public void RemoveAuthor(Author author)
+        {
+            var ao = _authors.FirstOrDefault(x => x.AuthorId == author.Id);
+            if (ao is not null)
+            {
+                _authors.Remove(ao);
+            }
+        }
+
+        public void Update(UpdateBookData data)
+        {
+            Title = data.Title;
+            SerialNumber = data.SerialNumber;
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Library.Core.Domain.Books.Data;
 using Library.Core.Domain.Books.Models;
 
 namespace Library.Core.Domain.Authors.Models
@@ -25,6 +26,16 @@ namespace Library.Core.Domain.Authors.Models
             Name = name;
         }
 
+        public static Author Create(CreateAuthorData data)
+        {
+            //Validate(new CreateAnimalDataValidator(), data);
+
+            return new Author()
+            {
+                Id = Guid.NewGuid(),
+                Name = data.Name
+            };
+        }
         /// <summary>
         /// Добавить автора книге
         /// </summary>
@@ -36,6 +47,11 @@ namespace Library.Core.Domain.Authors.Models
                 var ao = BookAuthor.Create(book.Id, Id );
                 _books.Add(ao);
             }
+        }
+
+        public void Update(UpdateAuthorData data)
+        {
+            Name = data.Name;
         }
     }
 }

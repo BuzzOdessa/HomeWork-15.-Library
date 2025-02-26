@@ -4,7 +4,7 @@ using Library.Core.Domain.Books.Data;
 using Library.Core.Domain.Books.Models;
 using MediatR;
 
-namespace Library.Application.Domain.Books.Commands.CreateBook
+namespace Library.Application.Domain.Books.Commands
 {
 
     internal class CreateBookCommandHanlder(
@@ -24,7 +24,7 @@ namespace Library.Application.Domain.Books.Commands.CreateBook
             booksRepository.Add(book);
             await unitOfWork.SaveChangesAsync(cancellationToken);
             return book.Id;
-            
+
         }
 
     }

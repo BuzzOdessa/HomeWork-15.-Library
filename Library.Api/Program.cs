@@ -2,6 +2,7 @@ using System.Reflection;
 using Library.Application;
 using Library.Infrastructure;
 using LibraryPersistentEF.LibraryDB;
+using Microsoft.OpenApi.Models;
 {
     // Подключить миграцию удалось после:
     //https://www.csharp.com/blogs/addmigration-the-term-addmigration-is-not-recognized
@@ -14,11 +15,29 @@ using LibraryPersistentEF.LibraryDB;
     builder.Services.AddControllers();
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
+    //    builder.Services.AddSwaggerGen();
+    builder.Services.AddSwaggerGen(
+            options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Створити бібліотеку",
+                    Description = "Домашка номер 15"
+                });
 
-    //// Вынес из инфраструктуры сюда. Здесь наглядней. Но беда. Инфрастуруктур все равно надо подключить отдельно
-    //Assembly assembly = Assembly.GetExecutingAssembly();
-    //builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
+                // Где-то надо указать шоб студия генерила хмл по комментам из исходников
+                //<PropertyGroup><GenerateDocumentationFile>true</GenerateDocumentationFile>  в *.Api.csproj
+                var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                xmlFilename = Path.Combine(AppContext.BaseDirectory, xmlFilename);
+                if (File.Exists(xmlFilename))
+                    options.IncludeXmlComments(xmlFilename);
+            }
+
+    );
+
+
     builder.Services.AddInfrastructureServices();
     builder.Services.RegisterLibraryDbContext(builder.Configuration);
 
