@@ -1,10 +1,13 @@
 ﻿using System.Xml.Linq;
+using Library.Core.Common;
 using Library.Core.Domain.Authors.Models;
+using Library.Core.Domain.Books.Checkers;
 using Library.Core.Domain.Books.Data;
+using Library.Core.Domain.Books.Validators;
 
 namespace Library.Core.Domain.Books.Models
 {
-    public class Book
+    public class Book : Entity
     {
 
         private readonly List<BookAuthor> _authors = new();
@@ -19,6 +22,15 @@ namespace Library.Core.Domain.Books.Models
         /// </summary>
         public string SerialNumber { get; set; }
 
+        public static async Task<Book> Create(CreateBookData data, ISerialNumUniqueChecker serialNumUniqueChecker)
+        {
+            ;
+
+            await ValidateAsync(new CreateBookDataValidator(serialNumUniqueChecker), data);
+            return Create(data);
+            
+        }
+        
         public static Book Create(CreateBookData data)
         {
             //Validate(new CreateAnimalDataValidator(), data);
