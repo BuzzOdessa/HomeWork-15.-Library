@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Library.Core.Common;
 using Library.Core.Domain.Books.Data;
 using Library.Core.Domain.Books.Models;
 
 namespace Library.Core.Domain.Authors.Models
 {
-    public class Author
+    public class Author :Entity
     {
         private readonly List<BookAuthor> _books = new();
 

@@ -15,7 +15,7 @@ namespace LibraryPersistentEF.LibraryDB.EntityTypesConfigurations
             .IsRequired();
 
             builder.Property(x => x.SerialNumber)
-            .HasMaxLength(50)
+            .HasMaxLength(15)
             .IsRequired();
             builder
                         .Metadata

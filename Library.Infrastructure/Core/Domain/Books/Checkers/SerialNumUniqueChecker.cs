@@ -2,7 +2,7 @@
 using LibraryPersistentEF.LibraryDB;
 using Microsoft.EntityFrameworkCore;
 
-namespace Library.Infrastructure.Application.Domain.Books.Checkers
+namespace Library.Infrastructure.Core.Domain.Books.Checkers
 {
 
     public class SerialNumUniqueChecker(LibraryDbContext dbContext) : ISerialNumUniqueChecker

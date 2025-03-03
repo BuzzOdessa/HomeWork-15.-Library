@@ -34,14 +34,14 @@ namespace Library.Api.Domain.Books
         }
 
         /// <summary>
-        /// Створити книгу
+        /// Створити книгу (стандарт серийного номера - цифры тире цифры)
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="request">!!!</param>        
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult> AddBook(
-            [FromBody][Required] CreateBookRequest request,
+        public async Task<ActionResult> CreateBook(            
+            CreateBookRequest request,
             CancellationToken cancellationToken = default)
         {
             var command = new CreateBookCommand(
@@ -99,7 +99,7 @@ namespace Library.Api.Domain.Books
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [HttpPost("{bookId}/remove-author")]
-        public async Task<ActionResult> RemoveOwner(
+        public async Task<ActionResult> RemoveAuthor(
                 [FromRoute] Guid bookId,
                 [FromBody][Required] Guid authorId,
                 CancellationToken cancellationToken = default)

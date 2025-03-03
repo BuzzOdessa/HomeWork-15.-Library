@@ -7,7 +7,7 @@ using Library.Core.Domain.Books.Validators;
 
 namespace Library.Core.Domain.Books.Models
 {
-    public class Book : Entity
+    public class Book : Entity, IAggregateRoot
     {
 
         private readonly List<BookAuthor> _authors = new();
@@ -24,17 +24,12 @@ namespace Library.Core.Domain.Books.Models
 
         public static async Task<Book> Create(CreateBookData data, ISerialNumUniqueChecker serialNumUniqueChecker)
         {
-            ;
-
             await ValidateAsync(new CreateBookDataValidator(serialNumUniqueChecker), data);
-            return Create(data);
-            
+            return Create(data);            
         }
         
         public static Book Create(CreateBookData data)
-        {
-            //Validate(new CreateAnimalDataValidator(), data);
-
+        {            
             return new Book()
             {
                 Id = Guid.NewGuid(),

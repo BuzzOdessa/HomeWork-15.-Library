@@ -1,6 +1,7 @@
 using System.Reflection;
 using Library.Application;
 using Library.Infrastructure;
+using Library.Infrastructure.Exceptions;
 using LibraryPersistentEF.LibraryDB;
 using Microsoft.OpenApi.Models;
 {
@@ -58,6 +59,9 @@ using Microsoft.OpenApi.Models;
     app.UseAuthorization();
 
     app.MapControllers();
+
+    // Гребаный экибастуз. Ось це було не прописане
+    app.UseCustomExceptionHandler(app.Environment);
 
     app.Run();
 }
